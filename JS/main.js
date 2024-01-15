@@ -52,6 +52,7 @@ for (let i = 0; i < slides.length; i++) {
     allThumbnails[slideIndex].classList.remove("active");
 
     slideIndex = this.getAttribute("data-thumb-index");
+    console.log(slideIndex);
 
     allSlides[slideIndex].classList.add("active");
     allThumbnails[slideIndex].classList.add("active");
@@ -69,7 +70,13 @@ arrowDownEl.addEventListener("click", function () {
   allSlides[slideIndex].classList.remove("active");
   allThumbnails[slideIndex].classList.remove("active");
 
-  slideIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
+  //   slideIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
+
+  if (slideIndex < allSlides.length - 1) {
+    slideIndex++;
+  } else {
+    slideIndex = 0;
+  }
 
   allSlides[slideIndex].classList.add("active");
   allThumbnails[slideIndex].classList.add("active");
@@ -86,7 +93,13 @@ arrowUpEl.addEventListener("click", function () {
   allSlides[slideIndex].classList.remove("active");
   allThumbnails[slideIndex].classList.remove("active");
 
-  slideIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
+  //   slideIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
+
+  if (slideIndex > 0) {
+    slideIndex--;
+  } else {
+    slideIndex = allSlides.length - 1;
+  }
 
   allSlides[slideIndex].classList.add("active");
   allThumbnails[slideIndex].classList.add("active");
