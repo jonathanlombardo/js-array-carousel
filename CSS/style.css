@@ -38,10 +38,15 @@ body {
 
 /* ---------------------------------------- */
 
+.bordered {
+  /* border: 1px solid black; */
+  border-radius: 15px;
+}
+
 #external-wrapper {
   height: 100vh;
   overflow: hidden;
-  gap: 30px;
+  gap: 10px;
 
   display: flex;
   flex-direction: column;
@@ -56,12 +61,29 @@ body {
   width: 800px;
   overflow: hidden;
 
+  display: flex;
+
   position: relative;
 }
 
-.bordered {
-  /* border: 1px solid black; */
-  border-radius: 15px;
+.slides-container {
+  position: relative;
+}
+
+.thumbnails-container {
+  height: 100%;
+  width: 20%;
+
+  overflow: auto;
+}
+
+.thumbnail {
+  width: 80%;
+  aspect-ratio: 1;
+
+  overflow: hidden;
+
+  margin: auto;
 }
 
 .arrow-up,
@@ -91,15 +113,31 @@ body {
   bottom: 20px;
 }
 
-.slide {
+.slide,
+.thumbnail-img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: center;
   object-position: top;
+}
+
+.slide {
   display: none;
 }
 
 .slide.active {
   display: block;
+}
+
+.thumbnail-img {
+  filter: brightness(0.45);
+  cursor: pointer;
+}
+
+.thumbnail-img:hover {
+  filter: brightness(1);
+}
+
+.thumbnail-img.active {
+  filter: brightness(1);
 }
