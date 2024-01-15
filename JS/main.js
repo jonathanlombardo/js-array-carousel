@@ -33,10 +33,10 @@ for (let i = 0; i < slides.length; i++) {
   const newThumbnailImg = document.createElement("img");
 
   newThumbnail.classList.add("thumbnail", "bordered", "mb-2");
+  if (activeClass) newThumbnail.classList.add(activeClass);
   newThumbnail.setAttribute("data-thumb-index", i);
 
   newThumbnailImg.classList.add("thumbnail-img");
-  if (activeClass) newThumbnailImg.classList.add(activeClass);
   newThumbnailImg.setAttribute("src", `./img/${img}`);
   newThumbnailImg.setAttribute("alt", `${desc}`);
 
@@ -46,7 +46,7 @@ for (let i = 0; i < slides.length; i++) {
   //   AGGIUNGO L'EVENTLISTENER ALLE THUMBNAILS
   newThumbnail.addEventListener("click", function () {
     const allSlides = document.querySelectorAll(".slide");
-    const allThumbnails = document.querySelectorAll(".thumbnail-img");
+    const allThumbnails = document.querySelectorAll(".thumbnail");
 
     allSlides[slideIndex].classList.remove("active");
     allThumbnails[slideIndex].classList.remove("active");
@@ -65,7 +65,7 @@ const arrowDownEl = document.querySelector(".arrow-down");
 
 arrowDownEl.addEventListener("click", function () {
   const allSlides = document.querySelectorAll(".slide");
-  const allThumbnails = document.querySelectorAll(".thumbnail-img");
+  const allThumbnails = document.querySelectorAll(".thumbnail");
 
   allSlides[slideIndex].classList.remove("active");
   allThumbnails[slideIndex].classList.remove("active");
@@ -88,7 +88,7 @@ arrowDownEl.addEventListener("click", function () {
 
 arrowUpEl.addEventListener("click", function () {
   const allSlides = document.querySelectorAll(".slide");
-  const allThumbnails = document.querySelectorAll(".thumbnail-img");
+  const allThumbnails = document.querySelectorAll(".thumbnail");
 
   allSlides[slideIndex].classList.remove("active");
   allThumbnails[slideIndex].classList.remove("active");

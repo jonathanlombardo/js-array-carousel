@@ -84,6 +84,8 @@ body {
   overflow: hidden;
 
   margin: auto;
+  filter: brightness(0.45);
+  cursor: pointer;
 }
 
 .arrow-up,
@@ -129,15 +131,11 @@ body {
   display: block;
 }
 
-.thumbnail-img {
-  filter: brightness(0.45);
-  cursor: pointer;
-}
-
-.thumbnail-img:hover {
+.thumbnail:hover {
   filter: brightness(1);
 }
 
-.thumbnail-img.active {
+.thumbnail.active {
   filter: brightness(1);
+  box-shadow: 0 0 6px 2px #62fb5a;
 }
