@@ -93,6 +93,7 @@ body {
   height: 40px;
   width: 40px;
   line-height: 40px;
+  z-index: 1;
 
   font-size: 1.8rem;
   text-align: center;
@@ -124,11 +125,14 @@ body {
 }
 
 .slide {
-  display: none;
+  position: absolute;
+  opacity: 0;
+
+  transition: 0.5s;
 }
 
 .slide.active {
-  display: block;
+  opacity: 1;
 }
 
 .thumbnail:hover {
