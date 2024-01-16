@@ -25,14 +25,14 @@ for (let i = 0; i < slides.length; i++) {
   }
 
   //   CREO LE SLIDE
-  const slideHtml = `<img src="./img/${img}" class="slide ${activeClass}" alt="${desc}" />`;
+  const slideHtml = `<img src="./img/${img}" class="slide" alt="${desc}" />`;
   slidesContainerEl.innerHTML += slideHtml;
 
   //   CREO LE THUMNAILS
   const newThumbnail = document.createElement("div");
   const newThumbnailImg = document.createElement("img");
 
-  newThumbnail.classList.add("thumbnail", "bordered", "mb-2");
+  newThumbnail.classList.add("thumbnail", "mb-2");
   if (activeClass) newThumbnail.classList.add(activeClass);
   newThumbnail.setAttribute("data-thumb-index", i);
 
@@ -48,13 +48,12 @@ for (let i = 0; i < slides.length; i++) {
     const allSlides = document.querySelectorAll(".slide");
     const allThumbnails = document.querySelectorAll(".thumbnail");
 
-    allSlides[slideIndex].classList.remove("active");
     allThumbnails[slideIndex].classList.remove("active");
 
     slideIndex = parseInt(this.getAttribute("data-thumb-index"));
     console.log(slideIndex);
 
-    allSlides[slideIndex].classList.add("active");
+    allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     allThumbnails[slideIndex].classList.add("active");
     titleEl.innerText = desc;
   });
@@ -63,16 +62,16 @@ for (let i = 0; i < slides.length; i++) {
 const arrowUpEl = document.querySelector(".arrow-up");
 const arrowDownEl = document.querySelector(".arrow-down");
 
-arrowDownEl.addEventListener("click", function () {
-  const allSlides = document.querySelectorAll(".slide");
-  const allThumbnails = document.querySelectorAll(".thumbnail");
+const allSlides = document.querySelectorAll(".slide");
+const allThumbnails = document.querySelectorAll(".thumbnail");
 
-  allSlides[slideIndex].classList.remove("active");
+arrowDownEl.addEventListener("click", function () {
   allThumbnails[slideIndex].classList.remove("active");
 
   slideIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
 
-  allSlides[slideIndex].classList.add("active");
+  allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
   allThumbnails[slideIndex].classList.add("active");
   allThumbnails[slideIndex].scrollIntoView(false);
 
@@ -81,15 +80,11 @@ arrowDownEl.addEventListener("click", function () {
 });
 
 arrowUpEl.addEventListener("click", function () {
-  const allSlides = document.querySelectorAll(".slide");
-  const allThumbnails = document.querySelectorAll(".thumbnail");
-
-  allSlides[slideIndex].classList.remove("active");
   allThumbnails[slideIndex].classList.remove("active");
 
   slideIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
 
-  allSlides[slideIndex].classList.add("active");
+  allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   allThumbnails[slideIndex].classList.add("active");
   allThumbnails[slideIndex].scrollIntoView(false);
 

@@ -67,7 +67,7 @@ body {
 }
 
 .slides-container {
-  position: relative;
+  overflow: hidden;
 }
 
 .thumbnails-container {
@@ -86,6 +86,9 @@ body {
   margin: auto;
   filter: brightness(0.45);
   cursor: pointer;
+
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .arrow-up,
@@ -122,17 +125,6 @@ body {
   width: 100%;
   object-fit: cover;
   object-position: top;
-}
-
-.slide {
-  position: absolute;
-  opacity: 0;
-
-  transition: 0.5s;
-}
-
-.slide.active {
-  opacity: 1;
 }
 
 .thumbnail:hover {
