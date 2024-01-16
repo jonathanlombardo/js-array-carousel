@@ -12,6 +12,8 @@ const slides = [
 const slidesContainerEl = document.querySelector(".slides-container");
 const thumbnailsContainerEl = document.querySelector(".thumbnails-container");
 const titleEl = document.querySelector("#title");
+const arrowUpEl = document.querySelector(".arrow-up");
+const arrowDownEl = document.querySelector(".arrow-down");
 
 let slideIndex = 0;
 
@@ -29,24 +31,25 @@ for (let i = 0; i < slides.length; i++) {
   slidesContainerEl.innerHTML += slideHtml;
 
   //   CREO LE THUMNAILS
-  const newThumbnail = document.createElement("div");
-  const newThumbnailImg = document.createElement("img");
 
-  newThumbnail.classList.add("thumbnail", "mb-2");
-  if (activeClass) newThumbnail.classList.add(activeClass);
-  newThumbnail.setAttribute("data-thumb-index", i);
+  const thumbHtml = `
+  <div class="thumbnail mb-2 ${activeClass}" data-thumb-index="${i}">
+    <img class="thumbnail-img" src="./img/${img}" alt="${desc}">
+  </div>
+  `;
+  thumbnailsContainerEl.innerHTML += thumbHtml;
+}
 
-  newThumbnailImg.classList.add("thumbnail-img");
-  newThumbnailImg.setAttribute("src", `./img/${img}`);
-  newThumbnailImg.setAttribute("alt", `${desc}`);
+const allSlides = document.querySelectorAll(".slide");
+const allThumbnails = document.querySelectorAll(".thumbnail");
 
-  newThumbnail.append(newThumbnailImg);
-  thumbnailsContainerEl.append(newThumbnail);
+allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
-  //   AGGIUNGO L'EVENTLISTENER ALLE THUMBNAILS
-  newThumbnail.addEventListener("click", function () {
-    const allSlides = document.querySelectorAll(".slide");
-    const allThumbnails = document.querySelectorAll(".thumbnail");
+//   AGGIUNGO L'EVENTLISTENER ALLE THUMBNAILS
+for (let i = 0; i < slides.length; i++) {
+  allThumbnails[i].addEventListener("click", function () {
+    this.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
     allThumbnails[slideIndex].classList.remove("active");
 
@@ -55,18 +58,11 @@ for (let i = 0; i < slides.length; i++) {
 
     allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     allThumbnails[slideIndex].classList.add("active");
+
+    const desc = slides[slideIndex][1];
     titleEl.innerText = desc;
   });
 }
-
-const arrowUpEl = document.querySelector(".arrow-up");
-const arrowDownEl = document.querySelector(".arrow-down");
-
-const allSlides = document.querySelectorAll(".slide");
-const allThumbnails = document.querySelectorAll(".thumbnail");
-
-allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
 arrowDownEl.addEventListener("click", function () {
   allThumbnails[slideIndex].classList.remove("active");
