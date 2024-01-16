@@ -65,6 +65,9 @@ const arrowDownEl = document.querySelector(".arrow-down");
 const allSlides = document.querySelectorAll(".slide");
 const allThumbnails = document.querySelectorAll(".thumbnail");
 
+allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
 arrowDownEl.addEventListener("click", function () {
   allThumbnails[slideIndex].classList.remove("active");
 
@@ -73,7 +76,7 @@ arrowDownEl.addEventListener("click", function () {
   allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
   allThumbnails[slideIndex].classList.add("active");
-  allThumbnails[slideIndex].scrollIntoView(false);
+  allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
   const desc = slides[slideIndex][1];
   titleEl.innerText = desc;
@@ -86,7 +89,7 @@ arrowUpEl.addEventListener("click", function () {
 
   allSlides[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   allThumbnails[slideIndex].classList.add("active");
-  allThumbnails[slideIndex].scrollIntoView(false);
+  allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
   const desc = slides[slideIndex][1];
   titleEl.innerText = desc;
