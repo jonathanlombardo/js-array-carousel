@@ -7,6 +7,7 @@ const slides = [
   ["Jhon-of-War.png", "Jhon Of War"],
   ["Jimli.png", "Jimli"],
   ["Jonnavacciuolo.png", "Jonnavacciuolo"],
+  ["Jonathus.png", "Jonathus Silente"],
 ];
 
 const slidesContainerEl = document.querySelector(".slides-container");
