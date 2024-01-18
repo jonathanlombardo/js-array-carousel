@@ -45,7 +45,7 @@ for (let i = 0; i < slides.length; i++) {
 const allSlides = document.querySelectorAll(".slide");
 const allThumbnails = document.querySelectorAll(".thumbnail");
 
-changeActiveSlide();
+changeActiveSlide(slideIndex, slidesContainerEl);
 allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
 addEventListener("resize", changeActiveSlide);
@@ -60,7 +60,7 @@ for (let i = 0; i < slides.length; i++) {
     slideIndex = parseInt(this.getAttribute("data-thumb-index"));
     console.log(slideIndex);
 
-    changeActiveSlide();
+    changeActiveSlide(slideIndex, slidesContainerEl);
     allThumbnails[slideIndex].classList.add("active");
 
     const desc = slides[slideIndex][1];
@@ -73,7 +73,7 @@ arrowDownEl.addEventListener("click", function () {
 
   slideIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
 
-  changeActiveSlide();
+  changeActiveSlide(slideIndex, slidesContainerEl);
 
   allThumbnails[slideIndex].classList.add("active");
   allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
@@ -87,7 +87,7 @@ arrowUpEl.addEventListener("click", function () {
 
   slideIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
 
-  changeActiveSlide();
+  changeActiveSlide(slideIndex, slidesContainerEl);
 
   allThumbnails[slideIndex].classList.add("active");
   allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });

@@ -1,4 +1,4 @@
-function changeActiveSlide() {
+function changeActiveSlide(slideIndex, slidesContainerEl) {
   const height = slidesContainerEl.clientHeight;
   const topPosition = slideIndex * height * -1;
 
