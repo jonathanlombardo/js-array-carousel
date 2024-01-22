@@ -11,13 +11,14 @@ const slides = [
 ];
 
 const slidesContainerEl = document.querySelector(".slides-container");
+const carouselContainerEl = document.querySelector(".carousel-wrapper");
 const thumbnailsContainerEl = document.querySelector(".thumbnails-container");
 const titleEl = document.querySelector("#title");
 const arrowUpEl = document.querySelector(".arrow-up");
 const arrowDownEl = document.querySelector(".arrow-down");
 const height = slidesContainerEl.clientHeight;
 
-let slideIndex = 2;
+let slideIndex = 0;
 
 for (let i = 0; i < slides.length; i++) {
   const img = slides[i][0];
@@ -48,50 +49,47 @@ const allThumbnails = document.querySelectorAll(".thumbnail");
 changeActiveSlide(slideIndex, slidesContainerEl);
 allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
-addEventListener("resize", changeActiveSlide);
+window.addEventListener("resize", function () {
+  slidesContainerEl.style.transition = "0s";
+  goToActiveSlide(slideIndex);
+  slidesContainerEl.style.transition = "transition: var(--sliding-trans)";
+  console.log("test");
+});
 
 //   AGGIUNGO L'EVENTLISTENER ALLE THUMBNAILS
 for (let i = 0; i < slides.length; i++) {
   allThumbnails[i].addEventListener("click", function () {
     this.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-
-    allThumbnails[slideIndex].classList.remove("active");
-
-    slideIndex = parseInt(this.getAttribute("data-thumb-index"));
-    console.log(slideIndex);
-
-    changeActiveSlide(slideIndex, slidesContainerEl);
-    allThumbnails[slideIndex].classList.add("active");
-
-    const desc = slides[slideIndex][1];
-    titleEl.innerText = desc;
+    const newIndex = parseInt(this.getAttribute("data-thumb-index"));
+    goToActiveSlide(newIndex);
   });
 }
 
 arrowDownEl.addEventListener("click", function () {
-  allThumbnails[slideIndex].classList.remove("active");
-
-  slideIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
-
-  changeActiveSlide(slideIndex, slidesContainerEl);
-
-  allThumbnails[slideIndex].classList.add("active");
-  allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-
-  const desc = slides[slideIndex][1];
-  titleEl.innerText = desc;
+  const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
+  goToActiveSlide(newIndex);
 });
 
 arrowUpEl.addEventListener("click", function () {
-  allThumbnails[slideIndex].classList.remove("active");
+  const newIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
+  goToActiveSlide(newIndex);
+});
 
-  slideIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
+let slidingAuto = setInterval(function () {
+  const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
+  goToActiveSlide(newIndex);
+  console.log("slidingAuto ON");
+}, 3000);
 
-  changeActiveSlide(slideIndex, slidesContainerEl);
+carouselContainerEl.addEventListener("mouseenter", function () {
+  clearInterval(slidingAuto);
+});
 
-  allThumbnails[slideIndex].classList.add("active");
-  allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-
-  const desc = slides[slideIndex][1];
-  titleEl.innerText = desc;
+carouselContainerEl.addEventListener("mouseleave", function () {
+  slidingAuto = setInterval(function () {
+    const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
+    goToActiveSlide(newIndex);
+    console.log("slidingAuto ON");
+  }, 3000);
+  console.log("ciao");
 });

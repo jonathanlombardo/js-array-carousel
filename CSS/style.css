@@ -14,6 +14,7 @@ body {
   --li-width: 1.5em; /* markerwidth lista FontAwesome */
 
   --main-color: rgba(255, 0, 0, 0.236);
+  --sliding-trans: 0.5s;
 }
 
 /* -- DEBUG */
@@ -71,7 +72,7 @@ body {
   position: relative;
 
   /* top: -600px; */
-  transition: 0.5s;
+  transition: var(--sliding-trans);
 }
 
 .thumbnails-container {
