@@ -55,8 +55,7 @@ allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inl
 window.addEventListener("resize", function () {
   slidesContainerEl.style.transition = "0s";
   goToActiveSlide(slideIndex);
-  slidesContainerEl.style.transition = "transition: var(--sliding-trans)";
-  console.log("test");
+  slidesContainerEl.style.transition = "var(--sliding-trans)";
 });
 
 //   AGGIUNGO L'EVENTLISTENER ALLE THUMBNAILS
