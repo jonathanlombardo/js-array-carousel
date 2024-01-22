@@ -20,10 +20,12 @@ const height = slidesContainerEl.clientHeight;
 
 let slideIndex = 0;
 
+// Genero l'HTML
 for (let i = 0; i < slides.length; i++) {
   const img = slides[i][0];
   const desc = slides[i][1];
   let activeClass = "";
+
   if (slideIndex == i) {
     activeClass = "active";
     titleEl.innerText = desc;
@@ -49,6 +51,7 @@ const allThumbnails = document.querySelectorAll(".thumbnail");
 changeActiveSlide(slideIndex, slidesContainerEl);
 allThumbnails[slideIndex].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
+// Gestisco il resizing
 window.addEventListener("resize", function () {
   slidesContainerEl.style.transition = "0s";
   goToActiveSlide(slideIndex);
@@ -65,26 +68,25 @@ for (let i = 0; i < slides.length; i++) {
   });
 }
 
+//   AGGIUNGO L'EVENTLISTENER ALLE FRECCE
 arrowDownEl.addEventListener("click", function () {
   const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
   goToActiveSlide(newIndex);
 });
-
 arrowUpEl.addEventListener("click", function () {
   const newIndex = slideIndex > 0 ? slideIndex - 1 : allSlides.length - 1;
   goToActiveSlide(newIndex);
 });
 
+// AGGIUNGO LO SLIDING AUTOMATICO
 let slidingAuto = setInterval(function () {
   const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
   goToActiveSlide(newIndex);
   console.log("slidingAuto ON");
 }, 3000);
-
 carouselContainerEl.addEventListener("mouseenter", function () {
   clearInterval(slidingAuto);
 });
-
 carouselContainerEl.addEventListener("mouseleave", function () {
   slidingAuto = setInterval(function () {
     const newIndex = slideIndex < allSlides.length - 1 ? slideIndex + 1 : 0;
